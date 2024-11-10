@@ -1,7 +1,6 @@
 // Packages needed for this application
 const fs = require('fs');
 const inquirer = require('inquirer');
-const path = require('path');
 const generateMarkdown = require('./utils/generateMarkdown');
 
 // Questions for user input
@@ -10,32 +9,32 @@ const questions = [
     {
         type: 'input',
         name: 'title',
-        message: 'What is the title of your program?',
+        message: 'What is the title of your project?',
     },
     //Description
     {
         type: 'input',
         name: 'description',
-        message: 'Please provide a description of this program.',
+        message: 'Please provide a description of this project.',
     },
     
     //Installation
     {
         type: 'input',
         name: 'installation',
-        message: 'Please provide instructions on how to install the software or commands for this program.',
+        message: 'Please provide instructions on how to install the software or commands for this project.',
     },
     //Usage
     {
         type: 'input',
         name: 'usage',
-        message: 'Please describe how others can use this program.',
+        message: 'Please describe how others can use this project.',
     },
     //License
     {
         type: 'list',
         name: 'license',
-        message: 'Please select the applicable license for this program.',
+        message: 'Please select the applicable license for this project.',
         choices: [
             'MIT',
             'GNU GPLv3.0',
@@ -49,13 +48,13 @@ const questions = [
     {
         type: 'input',
         name: 'contributing',
-        message: 'How can users contribute to this program.',
+        message: 'How can users contribute to this project.',
     },
     //Tests
     {
         type: 'input',
         name: 'tests',
-        message: 'Please provide any testing instructions you would like to for this program.',
+        message: 'Please provide any testing instructions for this project.',
     },
     //Questions
         //GitHub Username
@@ -68,20 +67,24 @@ const questions = [
         {
             type: 'input',
             name: 'email',
-            message: 'What is your email address, that users may contact, for any questions?',
+            message: 'What is your email address, for any user questions?',
         }
 ];
 
 // Function to write README file
 function writeToFile(fileName, data) {
-    return fs.writeFileSync(path.join(process.cwd(), fileName), data);
+    fs.writeFileSync(fileName, generateMarkdown(data), function (err) {
+        if (err) {
+            return console.log(err);
+        }
+    });
 }
 
 // Function to initialize app
 function init() {
-    inquirer.prompt(questions).then((inquirerResponses) => {
-        console.log('Generating README');
-        writeToFile('README.md', generateMarkdown({ inquirerResponses }));
+    inquirer.prompt(questions).then((data) => {
+        console.log(JSON.stringify(data, null, ' '));
+        writeToFile('./templateExample/README.md', data);
     });
 }
 

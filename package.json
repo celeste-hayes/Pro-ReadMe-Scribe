@@ -1,15 +1,19 @@
 {
-  "name": "static-site",
+  "name": "Pro-ReadMe-Scibe",
   "version": "1.0.0",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/celeste-hayes/Pro-ReadMe-Scribe"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "inquirer": "^8.2.4"
   },
-  "description": ""
+  "homepage": "https://github.com/celeste-hayes/Pro-ReadMe-Scribe#readMe",
+  "description": "A well documented README is essential for any open source programs on GitHub, providing users and contributors with clear guidance on the project's purpose, setup, and usage."
 }
