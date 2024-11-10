@@ -40,11 +40,13 @@ function generateMarkdown(data) {
   const licenseBadge = renderLicenseBadge(data.license);
   const licenseLink = renderLicenseLink(data.license);
   const licenseSection = renderLicenseSection(data.license);
+  
 
   return ` # ${data.title}
   ${licenseBadge}
 
-  ###${data.description}
+  ## Description
+  ${data.description}
 
   ## Table of Contents
   * [Installation](#installation)
